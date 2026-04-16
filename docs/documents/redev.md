@@ -45,13 +45,13 @@ vi ./config.json
 
 ```bash
 cd vendors
-npm install  --registry https://registry.npm.taobao.org # 安装依赖
+pnpm install --frozen-lockfile --registry https://registry.npm.taobao.org # 安装依赖
 ```
 
 4.初始化
 
 ```bash
-npm run install-server  # 安装程序会初始化数据库索引和管理员账号，管理员账号名可在 config.json 配置
+pnpm run install-server  # 安装程序会初始化数据库索引和管理员账号，管理员账号名可在 config.json 配置
 # 默认输出
 # 初始化管理员账号成功,账号名："admin@admin.com"，密码："ymfe.org"
 ```
@@ -59,7 +59,7 @@ npm run install-server  # 安装程序会初始化数据库索引和管理员账
 5.启动开发机
 
 ```bash
-npm run dev
+pnpm run dev
 # 启动服务器后，请访问 127.0.0.1:{config.json配置的端口}，初次运行会有个编译的过程，请耐心等候
 # 127.0.0.1:3011
 ```
@@ -104,7 +104,7 @@ npm run dev
 
 ```bash
   cd vendors
-  npm run dev
+  pnpm run dev
   # 启动服务器后，请访问 127.0.0.1:{config.json配置的端口}，初次运行会有个编译的过程，请耐心等候
 ```
 
@@ -112,6 +112,6 @@ npm run dev
 
 ```bash
   cd vendors
-  ykit pack -m
+  pnpm run build-client
   node server/app.js
 ```

@@ -1,0 +1,9 @@
+- [x] 已完成对当前变更的全面评审，并给出“通过/不通过”结论与必须修复项清单（若有）
+- [x] 已在关键逻辑处补充必要且准确的注释（无泛滥、无重复代码字面含义）
+- [x] 仓库内不包含敏感信息（token/密钥/凭据/私有证书等）
+- [x] `npm ci` 可重复通过（不依赖 legacy-peer-deps）
+- [x] `npm test` 通过
+- [x] `npm run build-client` 通过
+- [x] `npm run dev-client` 启动冒烟通过
+- [x] 提交信息符合 Conventional Commits，且 commit 粒度合理
+- [x] 已 push 到 GitHub 远端分支且确认远端包含提交

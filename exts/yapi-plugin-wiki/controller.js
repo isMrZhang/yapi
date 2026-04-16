@@ -1,10 +1,10 @@
-const baseController = require('controllers/base.js');
+const baseController = require('../../server/controllers/base.js');
 const wikiModel = require('./wikiModel.js');
-const projectModel = require('models/project.js');
-const userModel = require('models/user.js');
+const projectModel = require('../../server/models/project.js');
+const userModel = require('../../server/models/user.js');
 const jsondiffpatch = require('jsondiffpatch');
 const formattersHtml = jsondiffpatch.formatters.html;
-const yapi = require('yapi.js');
+const yapi = require('../../server/yapi.js');
 // const util = require('./util.js');
 const fs = require('fs-extra');
 const path = require('path');

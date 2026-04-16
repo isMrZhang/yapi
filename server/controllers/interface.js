@@ -4,7 +4,6 @@ const interfaceCaseModel = require('../models/interfaceCase.js');
 const followModel = require('../models/follow.js');
 const groupModel = require('../models/group.js');
 const _ = require('underscore');
-const url = require('url');
 const baseController = require('./base.js');
 const yapi = require('../yapi.js');
 const userModel = require('../models/user.js');
@@ -19,6 +18,24 @@ const path = require('path');
 // const annotatedCss = require("jsondiffpatch/public/formatters-styles/annotated.css");
 // const htmlCss = require("jsondiffpatch/public/formatters-styles/html.css");
 
+
+function parseHttpPath(input) {
+  // Node 22/24 下 `url.parse()` 触发弃用告警；此处统一使用 WHATWG URL，并尽量保持旧行为（重复 query key 保留为数组）
+  const u = new URL(String(input), 'http://localhost');
+  const query = {};
+  for (const [key, value] of u.searchParams) {
+    if (Object.prototype.hasOwnProperty.call(query, key)) {
+      if (Array.isArray(query[key])) query[key].push(value);
+      else query[key] = [query[key], value];
+    } else {
+      query[key] = value;
+    }
+  }
+  return {
+    pathname: u.pathname,
+    query
+  };
+}
 
 function handleHeaders(values){
   let isfile = false,
@@ -217,7 +234,7 @@ class interfaceController extends baseController {
     params.method = params.method.toUpperCase();
     params.req_params = params.req_params || [];
     params.res_body_type = params.res_body_type ? params.res_body_type.toLowerCase() : 'json';
-    let http_path = url.parse(params.path, true);
+    let http_path = parseHttpPath(params.path);
 
     if (!yapi.commons.verifyPath(http_path.pathname)) {
       return (ctx.body = yapi.commons.resReturn(
@@ -341,7 +358,7 @@ class interfaceController extends baseController {
     params.method = params.method || 'GET';
     params.method = params.method.toUpperCase();
 
-    let http_path = url.parse(params.path, true);
+    let http_path = parseHttpPath(params.path);
 
     if (!yapi.commons.verifyPath(http_path.pathname)) {
       return (ctx.body = yapi.commons.resReturn(
@@ -701,7 +718,7 @@ class interfaceController extends baseController {
 
     if (params.path) {
       let http_path;
-      http_path = url.parse(params.path, true);
+      http_path = parseHttpPath(params.path);
 
       if (!yapi.commons.verifyPath(http_path.pathname)) {
         return (ctx.body = yapi.commons.resReturn(

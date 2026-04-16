@@ -29,19 +29,37 @@ YApi 是<strong>高效</strong>、<strong>易用</strong>、<strong>功能强大
 
 ### 内网部署
 #### 环境要求
-* nodejs（7.6+)
+* nodejs（推荐 22.x LTS；兼容 24.x）
 * mongodb（2.6+）
 * git
+
+后端运行与开发以 Node.js 22 LTS 作为基线（pnpm 9+）；如需验证更高版本，Node.js 24 也应可正常运行（尽量兼容），建议同时执行 `pnpm test` 做回归。
+
+#### pnpm（推荐）
+
+本仓库默认使用 pnpm，并通过 `packageManager` 固化版本。首次使用建议启用 Corepack：
+
+    corepack enable
+    corepack prepare pnpm@9.0.0 --activate
+
+常用命令：
+
+    pnpm install --frozen-lockfile
+    pnpm test
+    pnpm run build-client
+    pnpm run dev
 #### 安装
 使用我们提供的 yapi-cli 工具，部署 YApi 平台是非常容易的。执行 yapi server 启动可视化部署程序，输入相应的配置和点击开始部署，就能完成整个网站的部署。部署完成之后，可按照提示信息，执行 node/{网站路径/server/app.js} 启动服务器。在浏览器打开指定url, 点击登录输入您刚才设置的管理员邮箱，默认密码为 ymfe.org 登录系统（默认密码可在个人中心修改）。
 
     npm install -g yapi-cli --registry https://registry.npm.taobao.org
+    pnpm add -g yapi-cli --registry https://registry.npm.taobao.org
     yapi server 
     
 #### 服务管理
 利用pm2方便服务管理维护。
 
     npm install pm2 -g  //安装pm2
+    pnpm add -g pm2  //安装pm2
     cd  {项目目录}
     pm2 start "vendors/server/app.js" --name yapi //pm2管理yapi服务
     pm2 info yapi //查看服务信息
@@ -127,4 +145,3 @@ YApi 是<strong>高效</strong>、<strong>易用</strong>、<strong>功能强大
 
 ### License
 Apache License 2.0
-

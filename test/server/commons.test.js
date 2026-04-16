@@ -1,13 +1,13 @@
-import test from 'ava';
-import {
+const test = require('ava');
+const {
   ltrim,
   rtrim,
   trim,
   handleParams,
-  verifyPath, 
+  verifyPath,
   sandbox,
   handleVarPath
-} from '../../server/utils/commons.js';
+} = require('../../server/utils/commons.js');
 
 test('trim', t => {
     t.is(trim(" a   b  ksjdfk    "), 'a   b  ksjdfk');

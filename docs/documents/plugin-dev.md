@@ -1,8 +1,8 @@
 ## 运行开发服务器
 ```bash
-npm install
+pnpm install
 npm install -g ykit #依赖 ykit 
-npm run dev #启动开发服务器
+pnpm run dev #启动开发服务器
 ```
 
 ## 加载插件

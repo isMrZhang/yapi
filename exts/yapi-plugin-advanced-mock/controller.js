@@ -1,8 +1,8 @@
-const baseController = require('controllers/base.js');
+const baseController = require('../../server/controllers/base.js');
 const advModel = require('./advMockModel.js');
-const yapi = require('yapi.js');
+const yapi = require('../../server/yapi.js');
 const caseModel = require('./caseModel.js');
-const userModel = require('models/user.js');
+const userModel = require('../../server/models/user.js');
 const config = require('./index.js');
 
 class advMockController extends baseController {

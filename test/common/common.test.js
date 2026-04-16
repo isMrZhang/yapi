@@ -1,8 +1,5 @@
-import test from 'ava';
-import {
-  handleParamsValue,
-  schemaValidator
-} from '../../common/utils.js';
+const test = require('ava');
+const { handleParamsValue, schemaValidator } = require('../../common/utils.js');
 
 
 test('handleParamsValue', t => {
@@ -196,4 +193,3 @@ test('schemaValidator', t => {
 
   t.is(schemaValidator(schema2, data2).valid, true);
 })
-
