@@ -1,5 +1,7 @@
 ## 安装YApi
 
+说明：本文以“外层目录 + vendors 源码目录”的结构演示（历史部署方式）。如果你直接克隆本仓库进行二次开发，则仓库根目录就是可运行目录：`config.json` 放在仓库根目录，且无需再 `cd vendors`。
+
 1.创建工程目录
 
 ```bash
@@ -12,6 +14,13 @@ git clone https://github.com/YMFE/yapi.git vendors --depth=1 # 或者下载 zip 
 ```bash
 cp vendors/config_example.json ./config.json # 复制完成后请修改相关配置
 vi ./config.json
+```
+
+PowerShell（Win10 原生）等价命令：
+
+```powershell
+Copy-Item .\vendors\config_example.json .\config.json
+notepad .\config.json
 ```
 
 配置如下，主要配置 MongoDB 数据库，以及 Admin 账号。
@@ -46,6 +55,12 @@ vi ./config.json
 ```bash
 cd vendors
 pnpm install --frozen-lockfile --registry https://registry.npm.taobao.org # 安装依赖
+```
+
+如果是在本仓库根目录直接开发：
+
+```bash
+pnpm install --frozen-lockfile
 ```
 
 4.初始化

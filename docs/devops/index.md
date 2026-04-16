@@ -36,6 +36,12 @@ pnpm run install-server //安装程序会初始化数据库索引和管理员账
 node server/app.js //启动服务器后，请访问 127.0.0.1:{config.json配置的端口}，初次运行会有个编译的过程，请耐心等候
 ```
 
+PowerShell（Win10 原生）等价命令片段：
+
+```powershell
+Copy-Item .\vendors\config_example.json .\config.json
+```
+
 安装后的目录结构如下：
 
 ```

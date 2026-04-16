@@ -1,3 +1,7 @@
 {
-    "watch": ["server/", "common/", "plugins", "exts/"]
+  "watch": ["server/", "common/", "plugins", "exts/"],
+  "ignore": ["static/", "log/", "node_modules/"],
+  "ext": "js,json",
+  "legacyWatch": true,
+  "delay": "500"
 }

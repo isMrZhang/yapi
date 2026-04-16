@@ -1,0 +1,6 @@
+- [x] Win10 原生（PowerShell）可完成 `pnpm install --frozen-lockfile`，且锁文件不发生变更
+- [x] `pnpm run dev-copy-icon` 在 Win10 上无需额外 GNU 工具即可成功执行
+- [x] `pnpm run dev` 在 Win10 上能够并行启动后端与前端，并输出可访问的服务地址
+- [x] Win10 watcher 策略明确且可用：后端 nodemon 重启、前端热更新/重载稳定
+- [x] README 与二次开发文档包含 Win10 与 WSL2 双路径搭建、MongoDB 方案与排障清单
+- [x] （如启用）CI 至少包含 Windows 环境的 install + test 最小回归，避免跨平台脚本回归
