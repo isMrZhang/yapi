@@ -48,6 +48,30 @@ YApi 是<strong>高效</strong>、<strong>易用</strong>、<strong>功能强大
     pnpm test
     pnpm run build-client
     pnpm run dev
+
+#### Windows 10 开发（原生 / WSL2）
+
+Win10 下推荐优先使用 WSL2（更接近生产与 CI 环境）；也支持原生 PowerShell 开发。两种方式都以 Node.js 22+ 与 pnpm（Corepack）为基线。
+
+原生 Windows（PowerShell 7+ 推荐）：
+
+    corepack enable
+    corepack prepare pnpm@9.0.0 --activate
+    Copy-Item .\config_example.json .\config.json
+    pnpm install --frozen-lockfile
+    pnpm run install-server
+    pnpm run dev
+
+常见排障：
+
+    $env:WATCHPACK_POLLING=1000; pnpm run dev-client
+    $env:WEBPACK_WATCH_POLL=1000; pnpm run dev-client
+
+注意事项：
+
+- 建议开启 Win10 长路径支持（Long Paths），并避免把仓库放在 OneDrive/网络盘/受控目录下（可能导致安装与 watcher 不稳定）
+- MongoDB 可使用本机服务或 Docker Desktop（WSL2 后端）提供；确保 `config.json` 中的端口/鉴权信息可用
+- 若使用 WSL2，建议将仓库放在 WSL2 Linux 文件系统（如 `~/code/...`），而不是挂载到 `/mnt/c/...`，以获得更稳定的文件监听与更好的 I/O 性能
 #### 安装
 使用我们提供的 yapi-cli 工具，部署 YApi 平台是非常容易的。执行 yapi server 启动可视化部署程序，输入相应的配置和点击开始部署，就能完成整个网站的部署。部署完成之后，可按照提示信息，执行 node/{网站路径/server/app.js} 启动服务器。在浏览器打开指定url, 点击登录输入您刚才设置的管理员邮箱，默认密码为 ymfe.org 登录系统（默认密码可在个人中心修改）。
 

@@ -103,7 +103,7 @@ function createWebpackConfig({ mode }) {
   const filename = isDev ? '[name]@dev.js' : '[name]@[contenthash:20].js';
   const cssFilename = isDev ? '[name]@dev.css' : '[name]@[contenthash:20].css';
 
-  return {
+  const config = {
     mode,
     context: path.join(rootDir, 'client'),
     entry: {
@@ -196,6 +196,17 @@ function createWebpackConfig({ mode }) {
     performance: { hints: false },
     stats: { errorDetails: true }
   };
+
+  const poll = process.env.WEBPACK_WATCH_POLL || process.env.WATCHPACK_POLLING;
+  if (poll) {
+    config.watchOptions = {
+      poll: Number(poll) || 1000,
+      aggregateTimeout: 300,
+      ignored: /node_modules/
+    };
+  }
+
+  return config;
 }
 
 function withProdPlugins(config) {
