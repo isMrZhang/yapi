@@ -111,7 +111,8 @@ function mockValidator(interfaceData, ctx) {
         if (
           ctx.request.body[curForm.name] ||
           (ctx.request.body.fields && ctx.request.body.fields[curForm.name]) ||
-          (ctx.request.body.files && ctx.request.body.files[curForm.name])
+          (ctx.request.body.files && ctx.request.body.files[curForm.name]) ||
+          (ctx.request.files && ctx.request.files[curForm.name])
         ) {
           continue;
         }

@@ -1,0 +1,8 @@
+- [x] 评审覆盖依赖升级、运行时兼容性、安全、测试与启动验证，并给出明确结论
+- [x] 仓库文件中不包含敏感信息（token/密钥/凭据）
+- [x] Node 22 下 `npm ci --legacy-peer-deps` 成功
+- [x] Node 22 下 `npm test` 通过
+- [x] Node 24 下 `npm ci --legacy-peer-deps` 成功
+- [x] Node 24 下 `npm test` 通过
+- [x] Node 22 下 `node server/app.js` 可启动并监听端口（Mongo 未配置时允许提示错误但不应出现兼容性异常栈）
+- [x] 已将分支推送到 GitHub 远端且包含 HEAD 提交

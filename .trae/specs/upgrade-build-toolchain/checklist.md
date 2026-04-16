@@ -1,0 +1,8 @@
+- [x] 已确认现有 entrypoints、vendor 分包与 assets.js 对外约定
+- [x] Webpack 5 配置可在 Node 22 下运行并完成生产构建
+- [x] `static/prd/assets.js` 生成且 `window.WEBPACK_ASSETS` 结构符合约定
+- [x] gzip 产物可生成（或有明确说明与替代策略）
+- [x] `npm run dev-client` 在 Node 22 下可启动并可访问
+- [x] Node 24 下 `build-client` 与 `dev-client` 同样通过
+- [x] 移除/隔离 ykit/webpack2/happypack 旧链路，默认 scripts 不再依赖旧链路
+- [x] 后端静态资源访问逻辑在新产物下可正常加载首页

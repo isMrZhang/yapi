@@ -1,4 +1,4 @@
-import test from 'ava';
+const test = require('ava');
 const mockExtra = require('../common/mock-extra.js');
 
 
@@ -104,4 +104,3 @@ t.deepEqual(mockExtra(data6, {ttt: {
 
 
 })
-

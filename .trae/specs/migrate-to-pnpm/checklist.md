@@ -1,0 +1,6 @@
+- [x] 仓库使用 `packageManager` 固化 pnpm 版本，并可通过 Corepack 在本地/CI 启用
+- [x] `pnpm-lock.yaml` 已生成并纳入版本库，`package-lock.json` 已移除
+- [x] CI（Node 22/24）使用 `pnpm install --frozen-lockfile`，并完成 test/build 与最小启动冒烟
+- [x] `package.json` scripts 与仓库脚本不再硬编码依赖 `npm`（发布链路如保留需明确隔离）
+- [x] README/docs 已更新为 pnpm 安装与运行指引，并包含常见问题/兼容说明
+- [x] 在干净环境完成回归：`pnpm install --frozen-lockfile`、`pnpm test`、`pnpm run build-client`

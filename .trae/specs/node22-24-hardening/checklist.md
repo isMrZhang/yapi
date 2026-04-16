@@ -1,0 +1,9 @@
+- [x] Node 22 下 `npm ci` 可重复通过（不依赖隐式容忍策略）
+- [x] Node 24 下 `npm ci` 可重复通过（不依赖隐式容忍策略）
+- [x] `server/utils/token.js` 不再使用历史 crypto API（例如 `createCipher/createDecipher`），并具备旧 token 兼容期策略
+- [x] token 加解密具备单测覆盖：新 token、旧 token、错误分支
+- [x] 可选/原生依赖的安装策略明确（工具链或 omit optional），并在 CI 中验证通过
+- [x] `request` 不再作为运行时依赖存在（移除或已完全替换并回归）
+- [x] `nodemailer` 升级后 SMTP/TLS 关键路径已回归验证
+- [x] Node 22/24 CI 版本矩阵已落地并覆盖：安装、测试、构建（含至少一种启动冒烟）
+- [x] 输出迁移完成说明：已整改项、剩余风险、已知限制与推荐运行方式

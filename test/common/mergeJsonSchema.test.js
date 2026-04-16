@@ -1,5 +1,5 @@
-import test from 'ava';
-import mergeJsonSchema from '../../common/mergeJsonSchema';
+const test = require('ava');
+const mergeJsonSchema = require('../../common/mergeJsonSchema.js');
 
 test('base', t=>{
   let schema1 = {
@@ -126,4 +126,3 @@ test('array', t=>{
     }
   })
 })
-

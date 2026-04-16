@@ -35,9 +35,14 @@ Thumbs.db
 # *.tar.gz
 
 node_modules/
+/.pnpm-store/
 runtime/
 /prd/
 /dev/
+static/prd/
+/static/prd/
+/static/dev/
+ /config.json
 .tags
 .tags1
 tsconfig.json

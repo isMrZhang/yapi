@@ -14,28 +14,16 @@ function model(model, schema) {
 
 function connect(callback) {
   mongoose.Promise = global.Promise;
-  mongoose.set('useNewUrlParser', true);
-  mongoose.set('useFindAndModify', false);
-  mongoose.set('useCreateIndex', true);
 
   let config = yapi.WEBCONFIG;
-  let options = {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true};
+  let options = {};
 
   if (config.db.user) {
     options.user = config.db.user;
     options.pass = config.db.pass;
   }
 
-  if (config.db.reconnectTries) {
-    options.reconnectTries = config.db.reconnectTries;
-  }
-
-  if (config.db.reconnectInterval) {
-    options.reconnectInterval = config.db.reconnectInterval;
-  }
-
-
-  options = Object.assign({}, options, config.db.options)
+  options = Object.assign({}, options, config.db.options);
 
   var connectString = '';
 
@@ -48,15 +36,7 @@ function connect(callback) {
     }
   }
 
-  let db = mongoose.connect(
-    connectString,
-    options,
-    function(err) {
-      if (err) {
-        yapi.commons.log(err + ', mongodb Authentication failed', 'error');
-      }
-    }
-  );
+  let db = mongoose.connect(connectString, options);
 
   db.then(
     function() {
@@ -71,7 +51,7 @@ function connect(callback) {
     }
   );
 
-  autoIncrement.initialize(db);
+  autoIncrement.initialize(mongoose.connection);
   return db;
 }
 

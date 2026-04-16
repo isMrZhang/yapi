@@ -1,6 +1,3 @@
-process.env.NODE_PATH = __dirname;
-require('module').Module._initPaths();
-
 const yapi = require('./yapi.js');
 const commons = require('./utils/commons');
 yapi.commons = commons;
@@ -16,7 +13,8 @@ require('./utils/notice')
 const Koa = require('koa');
 const koaStatic = require('koa-static');
 // const bodyParser = require('koa-bodyparser');
-const koaBody = require('koa-body');
+const koaBodyModule = require('koa-body');
+const koaBody = typeof koaBodyModule === 'function' ? koaBodyModule : (koaBodyModule.koaBody || koaBodyModule.default);
 const router = require('./router.js');
 
 global.storageCreator = storageCreator;

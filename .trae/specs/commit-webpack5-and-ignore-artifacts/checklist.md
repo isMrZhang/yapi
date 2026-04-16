@@ -1,0 +1,11 @@
+- [x] `.gitignore` 已忽略 `static/prd/` 等构建产物目录
+- [x] `git status` 不包含任何构建产物文件（仅保留源码/配置变更）
+- [x] 代码评审结论为“通过”，且无未解决阻塞项
+- [x] Node 22：`npm ci --legacy-peer-deps` 成功
+- [x] Node 22：`npm run build-client` 成功
+- [x] Node 22：`npm run dev-client` 可启动
+- [x] Node 24：`npm ci --legacy-peer-deps` 成功
+- [x] Node 24：`npm run build-client` 成功
+- [x] Node 24：`npm run dev-client` 可启动
+- [x] 提交信息符合约定，且未包含敏感信息
+- [x] 已 push 到 GitHub 远端分支并确认远端包含提交

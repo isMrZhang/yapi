@@ -87,7 +87,7 @@ class interfaceColController extends baseController {
       });
 
       req.on('end', function() {
-        let data = new Buffer(size);
+        let data = Buffer.alloc(size);
         for (let i = 0, pos = 0, l = chunks.length; i < l; i++) {
           let chunk = chunks[i];
           chunk.copy(data, pos);
@@ -113,9 +113,15 @@ class interfaceColController extends baseController {
    */
   async testFilesUpload(ctx) {
     try {
-      let file = ctx.request.body.files.file;
+      let file =
+        (ctx.request && ctx.request.files && ctx.request.files.file) ||
+        (ctx.request &&
+          ctx.request.body &&
+          ctx.request.body.files &&
+          ctx.request.body.files.file);
       let newPath = path.join(yapi.WEBROOT_RUNTIME, 'test.text');
-      fs.renameSync(file.path, newPath);
+      let filePath = file && (file.filepath || file.path);
+      fs.renameSync(filePath, newPath);
       ctx.body = yapi.commons.resReturn({ res: '上传成功' });
     } catch (e) {
       ctx.body = yapi.commons.resReturn(null, 402, e.message);

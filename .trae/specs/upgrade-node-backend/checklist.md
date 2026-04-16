@@ -1,0 +1,8 @@
+- [x] Node 22 环境下 `npm install` 可完成（无 registry 证书过期/不可达导致的失败）
+- [x] Node 24 环境下 `npm install` 可完成（或有明确的依赖限制说明）
+- [x] 后端相关依赖升级后，Mongo 连接初始化逻辑可工作（连接参数无废弃错误）
+- [x] 代码中不再使用 `new Buffer(...)`（改为 `Buffer.from/Buffer.alloc`）
+- [x] 导入 URL 的实现不再依赖 `request`，并保持错误返回结构兼容
+- [x] 后端启动入口不再依赖 `NODE_PATH`/`Module._initPaths()` 运行时注入
+- [x] Node 22 下 `npm test` 通过
+- [x] Node 24 下 `npm test` 通过（或有明确限制说明）

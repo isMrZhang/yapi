@@ -36,7 +36,7 @@ export default class Services extends Component {
           <div className="token">
             <h5>安装工具</h5>
             <pre>{`
-  npm i sm2tsservice -D
+  pnpm add -D sm2tsservice
   `}</pre>
             <h5>配置【3.2.0及以上版本】</h5>
             <pre>{`

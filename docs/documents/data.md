@@ -75,6 +75,7 @@ YApi 支持通过命令行导入接口数据，他的应用场景是做自动化
 
 ```
 npm install -g yapi-cli
+pnpm add -g yapi-cli
 ```
 
 第二步，在任意一个目录下新建配置文件 `yapi-import.json`，内容如下：

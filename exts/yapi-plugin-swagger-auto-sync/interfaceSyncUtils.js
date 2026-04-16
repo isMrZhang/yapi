@@ -1,12 +1,12 @@
 const schedule = require('node-schedule');
-const openController = require('controllers/open.js');
-const projectModel = require('models/project.js');
+const openController = require('../../server/controllers/open.js');
+const projectModel = require('../../server/models/project.js');
 const syncModel = require('./syncModel.js');
-const tokenModel = require('models/token.js');
-const yapi = require('yapi.js')
+const tokenModel = require('../../server/models/token.js');
+const yapi = require('../../server/yapi.js')
 const sha = require('sha.js');
 const md5 = require('md5');
-const { getToken } = require('utils/token');
+const { getToken } = require('../../server/utils/token');
 const jobMap = new Map();
 
 class syncUtils {
@@ -18,12 +18,20 @@ class syncUtils {
         this.syncModel = yapi.getInst(syncModel);
         this.tokenModel = yapi.getInst(tokenModel)
         this.projectModel = yapi.getInst(projectModel);
-        this.init()
+        this.init().catch(err => {
+            yapi.commons.log((err && err.message) || String(err), 'error');
+        })
     }
 
     //初始化定时任务
     async init() {
-        let allSyncJob = await this.syncModel.listAll();
+        let allSyncJob = [];
+        try {
+            allSyncJob = await this.syncModel.listAll();
+        } catch (e) {
+            yapi.commons.log((e && e.message) || String(e), 'error');
+            return;
+        }
         for (let i = 0, len = allSyncJob.length; i < len; i++) {
             let syncItem = allSyncJob[i];
             if (syncItem.is_sync_open) {
