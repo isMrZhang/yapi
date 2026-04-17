@@ -70,7 +70,7 @@ function createBabelRule() {
         configFile: false,
         sourceType: 'unambiguous',
         presets: [
-          ['@babel/preset-env', { modules: 'commonjs', loose: true }],
+          ['@babel/preset-env', { modules: false, loose: true }],
           ['@babel/preset-react', { runtime: 'classic' }]
         ],
         plugins: [
@@ -138,6 +138,10 @@ function createWebpackConfig({ mode }) {
     module: {
       noParse: /node_modules[\\/]jsondiffpatch[\\/]public[\\/]build[\\/].*\.js/,
       rules: [
+        {
+          test: /json-schema-editor-visual[\\/]package[\\/]index\.js$/,
+          type: 'javascript/auto'
+        },
         createBabelRule(),
         createStyleRule({
           test: /\.css$/,
