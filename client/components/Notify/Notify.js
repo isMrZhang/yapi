@@ -1,29 +1,33 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Alert, message } from 'antd';
+import { Alert } from 'antd';
 
 export default class Notify extends Component {
   constructor(props) {
     super(props);
     this.state = {
       newVersion: process.env.version,
-      version: process.env.version
+      version: process.env.version,
+      changelogUrl: 'https://github.com/YMFE/yapi/blob/master/CHANGELOG.md'
     };
   }
 
   componentDidMount() {
-    const versions = 'https://www.fastmock.site/mock/1529fa78fa4c4880ad153d115084a940/yapi/versions';
-    axios.get(versions).then(req => {
-      if (req.status === 200) {
-        this.setState({ newVersion: req.data.data[0] });
-      } else {
-        message.error('无法获取新版本信息！');
-      }
-    });
+    axios
+      .get('/api/system/version')
+      .then(res => {
+        const data = res && res.data && res.data.data;
+        if (!data || data.enable !== true || !data.latestVersion) return;
+        this.setState({
+          newVersion: data.latestVersion,
+          changelogUrl: data.changelogUrl || this.state.changelogUrl
+        });
+      })
+      .catch(() => {});
   }
 
   render() {
-    const isShow = this.state.newVersion !== this.state.version;
+    const isShow = this.state.newVersion && this.state.newVersion !== this.state.version;
     return (
       <div>
         {isShow && (
@@ -34,7 +38,7 @@ export default class Notify extends Component {
                 &nbsp;&nbsp;&nbsp;
                 <a
                   target="view_window"
-                  href="https://github.com/YMFE/yapi/blob/master/CHANGELOG.md"
+                  href={this.state.changelogUrl}
                 >
                   版本详情
                 </a>

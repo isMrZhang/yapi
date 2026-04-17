@@ -36,7 +36,11 @@ const initialState = {
   breadcrumb: [],
   studyTip: 0,
   study: false,
-  imageUrl: ''
+  imageUrl: '',
+  versionNotify: {
+    enable: false,
+    changelogUrl: ''
+  }
 };
 
 export default (state = initialState, action) => {
@@ -52,7 +56,11 @@ export default (state = initialState, action) => {
         userName: action.payload.data.data ? action.payload.data.data.username : null,
         uid: action.payload.data.data ? action.payload.data.data._id : null,
         type: action.payload.data.data ? action.payload.data.data.type : null,
-        study: action.payload.data.data ? action.payload.data.data.study : false
+        study: action.payload.data.data ? action.payload.data.data.study : false,
+        versionNotify: action.payload.data.versionNotify || {
+          enable: false,
+          changelogUrl: ''
+        }
       };
     }
     case LOGIN: {

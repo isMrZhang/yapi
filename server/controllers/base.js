@@ -8,6 +8,29 @@ const _ = require('underscore');
 const jwt = require('jsonwebtoken');
 const {parseToken} = require('../utils/token')
 
+const DEFAULT_CHANGELOG_URL = 'https://github.com/YMFE/yapi/blob/master/CHANGELOG.md';
+
+function normalizeVersionNotifyConfig(rawConfig) {
+  if (rawConfig === true) {
+    return {
+      enable: true,
+      changelogUrl: DEFAULT_CHANGELOG_URL
+    };
+  }
+
+  if (rawConfig && typeof rawConfig === 'object') {
+    return {
+      enable: rawConfig.enable === true,
+      changelogUrl: rawConfig.changelogUrl || DEFAULT_CHANGELOG_URL
+    };
+  }
+
+  return {
+    enable: false,
+    changelogUrl: DEFAULT_CHANGELOG_URL
+  };
+}
+
 class baseController {
   constructor(ctx) {
     this.ctx = ctx;
@@ -199,6 +222,7 @@ class baseController {
 
     body.ladp = await this.checkLDAP();
     body.canRegister = await this.checkRegister();
+    body.versionNotify = normalizeVersionNotifyConfig(yapi.WEBCONFIG.versionNotify);
     ctx.body = body;
   }
 

@@ -70,7 +70,8 @@ plugin.emitHook('app_route', AppRoute);
   state => {
     return {
       loginState: state.user.loginState,
-      curUserRole: state.user.role
+      curUserRole: state.user.role,
+      versionNotify: state.user.versionNotify
     };
   },
   {
@@ -88,7 +89,8 @@ export default class App extends Component {
   static propTypes = {
     checkLoginState: PropTypes.func,
     loginState: PropTypes.number,
-    curUserRole: PropTypes.string
+    curUserRole: PropTypes.string,
+    versionNotify: PropTypes.object
   };
 
   componentDidMount() {
@@ -112,7 +114,9 @@ export default class App extends Component {
         <Router getUserConfirmation={this.showConfirm}>
           <div className="g-main">
             <div className="router-main">
-              {this.props.curUserRole === 'admin' && <Notify />}
+              {this.props.curUserRole === 'admin' &&
+                this.props.versionNotify &&
+                this.props.versionNotify.enable === true && <Notify />}
               {alertContent()}
               {this.props.loginState !== 1 ? <Header /> : null}
               <div className="router-container">

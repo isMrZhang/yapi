@@ -160,15 +160,35 @@ Copy-Item .\vendors\config_example.json .\config.json
 ```
 
 ## 版本通知
-（v1.3.19+ 增加）在 config.json 添加 `"versionNotify": true` 配置项，就可以开启版本通知功能，默认为 `false`，修改完成后，请重启 yapi 服务器。
+版本通知默认关闭，开启后仅管理员登录可见。修改完成后请重启 yapi 服务器。
 
 ```json
 {
   "port": "******",
   "adminAccount": "*****",
-  "versionNotify": true
+  "versionNotify": false
 }
 
+```
+
+启用（使用默认版本源与默认 changelog 地址）：
+
+```json
+{
+  "versionNotify": true
+}
+```
+
+高级配置（推荐）：
+
+```json
+{
+  "versionNotify": {
+    "enable": true,
+    "sourceUrl": "https://example.com/versions",
+    "changelogUrl": "https://github.com/YMFE/yapi/blob/master/CHANGELOG.md"
+  }
+}
 ```
 
 

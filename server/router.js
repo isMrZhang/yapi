@@ -10,6 +10,7 @@ const projectController = require('./controllers/project.js');
 const logController = require('./controllers/log.js');
 const followController = require('./controllers/follow.js');
 const openController = require('./controllers/open.js');
+const systemController = require('./controllers/system.js');
 const { createAction } = require('./utils/commons.js');
 
 const router = new Router();
@@ -50,6 +51,10 @@ let INTERFACE_CONFIG = {
   open: {
     prefix: '/open/',
     controller: openController
+  },
+  system: {
+    prefix: '/system/',
+    controller: systemController
   }
 };
 
@@ -577,6 +582,13 @@ let routerConfig = {
       action: 'importData',
       path: 'import_data',
       method: 'post'
+    }
+  ],
+  system: [
+    {
+      action: 'version',
+      path: 'version',
+      method: 'get'
     }
   ]
 };
