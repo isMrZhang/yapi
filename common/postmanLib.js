@@ -481,9 +481,11 @@ function handleParams(interfaceData, handleValue, requestParams) {
   return requestOptions;
 }
 
-exports.checkRequestBodyIsRaw = checkRequestBodyIsRaw;
-exports.handleParams = handleParams;
-exports.handleContentType = handleContentType;
-exports.crossRequest = crossRequest;
-exports.handleCurrDomain = handleCurrDomain;
-exports.checkNameIsExistInArray = checkNameIsExistInArray;
+module.exports = {
+  checkRequestBodyIsRaw,
+  handleParams,
+  handleContentType,
+  crossRequest,
+  handleCurrDomain,
+  checkNameIsExistInArray
+};
