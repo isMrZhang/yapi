@@ -34,11 +34,9 @@ const vendors = {
 function getPackageName(module) {
   if (!module.context) return null;
   const context = module.context;
-  const scoped = context.match(/[\\/]node_modules[\\/](@[^\\/]+)[\\/]([^\\/]+)/);
-  if (scoped) return `${scoped[1]}/${scoped[2]}`;
-  const normal = context.match(/[\\/]node_modules[\\/]([^\\/]+)/);
-  if (!normal) return null;
-  return normal[1];
+  const match = context.match(/[\\/]node_modules[\\/](?!.*[\\/]node_modules[\\/])(@[^\\/]+[\\/][^\\/]+|[^\\/]+)/);
+  if (match) return match[1];
+  return null;
 }
 
 function createCacheGroup(name, packages, priority) {
@@ -153,7 +151,7 @@ function createWebpackConfig({ mode }) {
         }),
         createStyleRule({
           test: /\.(sass|scss)$/,
-          preProcessor: { loader: 'sass-loader', options: { sourceMap: true } }
+          preProcessor: { loader: 'sass-loader', options: { sourceMap: true, api: 'modern-compiler', sassOptions: { silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin'] } } }
         }),
         {
           test: /\.(gif|jpe?g|png|woff2?|eot|ttf|svg)$/,
