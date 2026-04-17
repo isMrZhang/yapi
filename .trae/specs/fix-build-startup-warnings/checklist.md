@@ -1,0 +1,4 @@
+- [x] 运行 `pnpm run build-client` 时，控制台不再输出 `sass-loader` 和 `Sass` 的 `legacy JS API` 与 `@import` 废弃警告。
+- [x] 运行 `pnpm run build-client` 时，控制台不再输出 `Loading.scss` 的 slash division 废弃警告。
+- [x] 运行 `pnpm run build-client` 时，控制台不再输出由于混合 CommonJS / ES 导出引起的 `export ... was not found` Webpack 警告。
+- [x] 最终构建命令能无任何警告信息成功完成，并且不会影响原有页面的展示和运行。
