@@ -54,8 +54,10 @@ function createCacheGroup(name, packages, priority) {
 }
 
 function createBabelRule() {
-  const isAllowedNodeModules = filePath =>
-    /node_modules[\\/](?:_?yapi-plugin|json-schema-editor-visual)[\\/]/.test(filePath);
+  const isAllowedNodeModules = filePath => {
+    if (/json-schema-editor-visual[\\/]package[\\/]index\.js$/.test(filePath)) return false;
+    return /node_modules[\\/](?:_?yapi-plugin|json-schema-editor-visual)[\\/]/.test(filePath);
+  };
   return {
     test: /\.(js|jsx)$/,
     exclude: filePath => {
@@ -140,7 +142,24 @@ function createWebpackConfig({ mode }) {
       rules: [
         {
           test: /json-schema-editor-visual[\\/]package[\\/]index\.js$/,
-          type: 'javascript/auto'
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                babelrc: false,
+                configFile: false,
+                presets: [
+                  ['@babel/preset-env', { modules: 'commonjs', loose: true }],
+                  ['@babel/preset-react', { runtime: 'classic' }]
+                ],
+                plugins: [
+                  ['@babel/plugin-proposal-decorators', { legacy: true }],
+                  ['@babel/plugin-proposal-class-properties', { loose: true }],
+                  ['@babel/plugin-transform-runtime', { helpers: true, regenerator: true }]
+                ]
+              }
+            }
+          ]
         },
         createBabelRule(),
         createStyleRule({
