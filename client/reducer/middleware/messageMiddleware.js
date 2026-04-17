@@ -6,14 +6,21 @@ export default () => next => action => {
   }
   if (action.error) {
     message.error((action.payload && action.payload.message) || '服务器错误');
-  } else if (
-    action.payload &&
-    action.payload.data &&
-    action.payload.data.errcode &&
-    action.payload.data.errcode !== 40011
-  ) {
-    message.error(action.payload.data.errmsg);
-    throw new Error(action.payload.data.errmsg);
+    return next(action);
+  }
+  const data = action.payload && action.payload.data;
+  if (data && data.errcode !== undefined && data.errcode !== null) {
+    const errcode = Number(data.errcode);
+    if (errcode === 40011) {
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
+      return next(action);
+    }
+    if (errcode !== 0) {
+      message.error(data.errmsg || data.message || '服务器错误');
+      return next(action);
+    }
   }
   return next(action);
 };
