@@ -39,38 +39,58 @@ export default class Project extends Component {
 
   constructor(props) {
     super(props);
+    this._unmounted = false;
   }
 
-  async componentWillMount() {
-    await this.props.getProject(this.props.match.params.id);
-    await this.props.fetchGroupMsg(this.props.curProject.group_id);
-
-    this.props.setBreadcrumb([
-      {
-        name: this.props.currGroup.group_name,
-        href: '/group/' + this.props.currGroup._id
-      },
-      {
-        name: this.props.curProject.name
-      }
-    ]);
+  componentWillUnmount() {
+    this._unmounted = true;
   }
 
-  async componentWillReceiveProps(nextProps) {
-    const currProjectId = this.props.match.params.id;
-    const nextProjectId = nextProps.match.params.id;
-    if (currProjectId !== nextProjectId) {
-      await this.props.getProject(nextProjectId);
-      await this.props.fetchGroupMsg(this.props.curProject.group_id);
+  async loadProject(projectId) {
+    const projectAction = await this.props.getProject(projectId);
+    const projectMsg = projectAction && projectAction.payload && projectAction.payload.data
+      ? projectAction.payload.data.data
+      : null;
+
+    const groupId = projectMsg && projectMsg.group_id ? projectMsg.group_id : null;
+    let groupMsg = null;
+    if (groupId) {
+      const groupAction = await this.props.fetchGroupMsg(groupId);
+      groupMsg = groupAction && groupAction.payload && groupAction.payload.data
+        ? groupAction.payload.data.data
+        : null;
+    }
+
+    if (this._unmounted) {
+      return;
+    }
+
+    const breadcrumbGroupName = (groupMsg && groupMsg.group_name) || this.props.currGroup.group_name;
+    const breadcrumbGroupId = (groupMsg && groupMsg._id) || this.props.currGroup._id;
+    const breadcrumbProjectName = (projectMsg && projectMsg.name) || this.props.curProject.name;
+
+    if (breadcrumbGroupName && breadcrumbGroupId && breadcrumbProjectName) {
       this.props.setBreadcrumb([
         {
-          name: this.props.currGroup.group_name,
-          href: '/group/' + this.props.currGroup._id
+          name: breadcrumbGroupName,
+          href: '/group/' + breadcrumbGroupId
         },
         {
-          name: this.props.curProject.name
+          name: breadcrumbProjectName
         }
       ]);
+    }
+  }
+
+  async componentDidMount() {
+    await this.loadProject(this.props.match.params.id);
+  }
+
+  async componentDidUpdate(prevProps) {
+    const prevProjectId = prevProps.match.params.id;
+    const currProjectId = this.props.match.params.id;
+    if (prevProjectId !== currProjectId) {
+      await this.loadProject(currProjectId);
     }
   }
 

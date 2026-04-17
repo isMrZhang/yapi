@@ -51,12 +51,25 @@ class ProjectEnv extends Component {
     });
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     this._isMounted = true;
-    await this.props.getProject(this.props.projectId);
-    const { env, _id } = this.props.projectMsg;
-    this.initState(env, _id);
-    this.handleClick(0, env[0]);
+    const projectAction = await this.props.getProject(this.props.projectId);
+    if (!this._isMounted) {
+      return;
+    }
+    const projectMsg = projectAction && projectAction.payload && projectAction.payload.data
+      ? projectAction.payload.data.data
+      : this.props.projectMsg;
+    const env = projectMsg && projectMsg.env ? projectMsg.env : [];
+    const _id = projectMsg ? projectMsg._id : null;
+    if (env.length > 0) {
+      this.initState(env, _id);
+      this.handleClick(0, env[0]);
+      return;
+    }
+    const defaultEnv = { name: '新环境', domain: '', header: [] };
+    this.initState([defaultEnv], _id);
+    this.handleClick(0, defaultEnv);
   }
 
   componentWillUnmount() {

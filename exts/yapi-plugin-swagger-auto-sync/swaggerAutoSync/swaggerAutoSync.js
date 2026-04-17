@@ -93,20 +93,23 @@ export default class ProjectInterfaceSync extends Component {
     callback()
   }
 
-  componentWillMount() {
-    //查询同步任务
-    this.setState({
-      sync_data: {}
-    });
-    //默认每份钟同步一次,取一个随机数
-    this.setState({
-      random_corn: '*/2 * * * *'
-    });
-    this.getSyncData();
+  componentDidMount() {
+    this.setState(
+      {
+        sync_data: {},
+        random_corn: '*/2 * * * *'
+      },
+      () => {
+        this.getSyncData();
+      }
+    );
   }
 
   async getSyncData() {
-    let projectId = this.props.projectMsg._id;
+    let projectId = this.props.projectId || (this.props.projectMsg && this.props.projectMsg._id);
+    if (!projectId) {
+      return;
+    }
     let result = await axios.get('/api/plugin/autoSync/get?project_id=' + projectId);
     if (result.data.errcode === 0) {
       if (result.data.data) {
