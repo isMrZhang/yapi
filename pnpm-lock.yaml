@@ -253,6 +253,9 @@ importers:
       nodemon:
         specifier: ^1.11.0
         version: 1.19.4
+      process:
+        specifier: ^0.11.10
+        version: 0.11.10
       prop-types:
         specifier: ^15.5.10
         version: 15.8.1
@@ -5093,6 +5096,10 @@ packages:
 
   process-warning@2.3.2:
     resolution: {integrity: sha512-n9wh8tvBe5sFmsqlg+XQhaQLumwpqoAUruLwjCopgTmUBjJ/fjtBsJzKleCaIGBOMXYEhp1YfKl4d7rJ5ZKJGA==}
+
+  process@0.11.10:
+    resolution: {integrity: sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==}
+    engines: {node: '>= 0.6.0'}
 
   progress@1.1.8:
     resolution: {integrity: sha512-UdA8mJ4weIkUBO224tIarHzuHs4HuYiJvsuGT7j/SPQiUJVjYvNDBIPa0hAorduOfjGohB/qHWRa/lrrWX/mXw==}
@@ -12668,6 +12675,8 @@ snapshots:
   process-nextick-args@2.0.1: {}
 
   process-warning@2.3.2: {}
+
+  process@0.11.10: {}
 
   progress@1.1.8: {}
 

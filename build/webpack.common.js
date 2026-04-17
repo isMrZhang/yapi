@@ -166,6 +166,7 @@ function createWebpackConfig({ mode }) {
       ]
     },
     plugins: [
+      new webpack.ProvidePlugin({ Buffer: ['buffer', 'Buffer'], process: 'process/browser' }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(isDev ? 'dev' : 'production'),
         'process.env.version': JSON.stringify(pkg.version),
