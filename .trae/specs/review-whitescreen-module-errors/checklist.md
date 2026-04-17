@@ -1,0 +1,5 @@
+- [x] 执行 `pnpm run build-client` 构建成功，未输出任何 `WARNING in ... export was not found` 或 `ES Modules may not assign module.exports` 错误。
+- [x] 检查 `static/prd` 目录下是否正常生成了 `lib@*.js`、`lib2@*.js`、`lib3@*.js`。
+- [x] 浏览器访问 `http://127.0.0.1:3000` 时，F12 控制台没有任何 404 Not Found 的网络请求。
+- [x] 浏览器访问 `http://127.0.0.1:3000` 时，F12 控制台没有任何关于 `exports is not defined` 或 `Cannot read properties of undefined (reading 'js')` 的 JS 报错。
+- [x] 界面不再白屏，能正常渲染。
