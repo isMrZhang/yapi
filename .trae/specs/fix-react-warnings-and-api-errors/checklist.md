@@ -1,0 +1,6 @@
+- [x] 服务端与插件模型层不再调用 `Model.update()` / `Model.remove()`（mongoose v7 兼容）。
+- [x] 访问 `http://127.0.0.1:3000/group/:id` 不再出现 `this.model.update is not a function`，页面可正常交互。
+- [x] 开发模式控制台不再出现项目源码导致的 `componentWillMount/componentWillReceiveProps` 警告（antd 或其他第三方如仍存在需在 PR 描述中列清并说明处置）。
+- [x] 版本通知不再从浏览器直连外域（fastmock）触发 CORS；开启开关后通过同源接口正常获取版本信息，关闭时不发请求。
+- [x] 控制台不再出现由 `messageMiddleware` 导致的 `Uncaught (in promise)` 噪音。
+- [x] 运行 `pnpm test` 与 `pnpm run build-client` 通过。
