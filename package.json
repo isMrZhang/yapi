@@ -93,7 +93,7 @@
     "@babel/preset-env": "^7.26.10",
     "@babel/preset-react": "^7.26.3",
     "@babel/runtime": "^7.26.10",
-    "antd": "3.2.2",
+    "antd": "3.26.20",
     "anujs": "^1.2.6",
     "ava": "^7.0.0",
     "babel-eslint": "^7.2.3",
