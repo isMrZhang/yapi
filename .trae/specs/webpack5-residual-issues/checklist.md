@@ -1,0 +1,4 @@
+- [x] `package.json` 中包含 `process` 作为依赖（或开发依赖）。
+- [x] `build/webpack.common.js` 的插件列表中成功配置了针对 `Buffer` 和 `process` 的 `ProvidePlugin`。
+- [x] 运行 `pnpm run build-client` 能够成功打包且无任何错误输出。
+- [x] 启动开发服务器并在浏览器访问 `http://127.0.0.1:3000` 时，F12 控制台中不再有 `Buffer is not defined` 或 `process is not defined` 相关的运行时报错。
