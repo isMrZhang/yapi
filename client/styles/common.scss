@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+@import './mixin.scss';
 
 html {
   font-size:100px;
@@ -13,7 +14,7 @@ html, body {
 }
 
 html {
-  // background-color: #32363a;
+  background-color: $color-body-bg;
 }
 
 ::selection {
@@ -121,9 +122,16 @@ em {
   min-height: 5rem;
 }
 
+.m-panel {
+  background-color: $color-bg-base;
+  padding: 24px;
+  min-height: 4.68rem;
+  margin-top: 0;
+}
+
 .panel-title {
   margin-bottom: .16rem;
-  border-left: 3px solid #2395f1;
+  border-left: 3px solid $color-blue;
   padding-left: 8px;
   .title {
     font-weight: normal;

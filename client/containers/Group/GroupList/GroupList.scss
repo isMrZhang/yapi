@@ -2,15 +2,18 @@
 
 .group-bar {
   min-height: 5rem;
+  height: 100%;
+  background-color: $color-bg-base;
+  color: $color-text-dark;
   .curr-group {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
              "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
              SimSun, sans-serif;
-    background-color: $color-bg-dark;
-    color: $color-white;
+    background-color: transparent;
+    color: $color-text-dark;
     padding: .24rem .24rem 0;
     .curr-group-name {
-      color: $color-white;
+      color: $color-text-dark;
       font-size: .22rem;
       display: flex;
       justify-content: space-between;
@@ -33,17 +36,17 @@
         white-space: nowrap;
       }
       .editSet{
-        color: rgba(255, 255, 255, 0.85);
+        color: $color-text-secondary;
         &:hover{
-          color: #2395f1;
+          color: $color-blue;
         }
       }
       .ant-dropdown-link{
         float: right;
         display: block;
-        color: rgba(255, 255, 255, 0.85);
+        color: $color-text-secondary;
         &:hover{
-          color: #2395f1;
+          color: $color-blue;
         }
       }
       .operate {
@@ -59,7 +62,7 @@
       }
     }
     .curr-group-desc {
-      color: $color-white-secondary;
+      color: $color-grey-deep;
       font-size: 13px;
       max-height: 54px;
       margin-top: .16rem;
@@ -73,7 +76,8 @@
       font-size: 14px;
       margin-left: .08rem;
       cursor: pointer;
-      border: 1px solid $color-white;
+      border: 1px solid $color-border-base;
+      color: $color-text-secondary;
       padding: 6px 12px;
       border-radius: 4px;
       transition: all .2s;
@@ -81,25 +85,26 @@
     .delete-group:hover, .edit-group:hover {
       background-color: $color-blue;
       border: 1px solid $color-blue;
+      color: $color-bg-base;
     }
   }
   .group-operate {
     padding: 16px 24px;
     display: flex;
     justify-content: space-around;
-    background-color: $color-bg-dark;
+    background-color: transparent;
     .search {
       flex-grow: 1;
     }
     .ant-input {
-      color: $color-white;
-      background-color: $color-bg-dark;
+      color: $color-text-dark;
+      background-color: $color-bg-base;
     }
     .ant-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-      color: $color-white-secondary;
+      color: $color-text-secondary;
     }
     .ant-input-suffix {
-      color: $color-white;
+      color: $color-text-secondary;
     }
   }
   .group-list {
@@ -107,18 +112,12 @@
     border-bottom: 1px solid #e9e9e9;
     padding-bottom: 24px;
     border: none;
+    background-color: transparent;
     .group-item {
       // height: 48px;
       // line-height: 48px;
       // padding: 0 24px;
       font-size: 14px;
-    }
-    .group-item:hover {
-      // background: #34495E;
-      // color: $color-white;
-    }
-    .group-item.selected {
-      // background: #34495E;
     }
     .group-name {
       float: left;

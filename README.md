@@ -27,6 +27,13 @@ YApi 是<strong>高效</strong>、<strong>易用</strong>、<strong>功能强大
 *  支持 postman, har, swagger 数据导入
 *  免费开源，内网部署，信息再也不怕泄露了
 
+### 前端技术架构
+本项目前端是一个基于 React 16.x 体系与 Webpack 5 构建的高度模块化、插件化的单页应用（SPA）。
+* **核心框架与UI**：基于 `React (v16.2.0)`，配合早期装饰器语法（Decorators）简化高阶组件包裹。UI 库选用 `Ant Design (v3.x)`，通过 `ConfigProvider` 配置全局中文，样式预处理采用 `Less` 与 `Sass`。
+* **状态与路由管理**：使用 `Redux (v3.7)` 配合 `redux-promise` 处理异步数据流，按业务域（User、Project、Interface等）拆分模块；基于 `react-router-dom (v4.x)` 实现配置化路由与全局鉴权拦截。
+* **构建与优化**：构建链升级至 `Webpack 5` + `Babel 7`。利用 `SplitChunks` 拆分第三方依赖库（lib/lib2/lib3）优化长效缓存，集成 `MiniCssExtractPlugin` 提取样式，支持 `pnpm` 依赖管理。
+* **插件化扩展机制**：前端核心亮点是实现了事件 Hook 机制（`plugin.emitHook`）。允许第三方插件在不修改源码的情况下，动态向应用注入路由、修改状态、新增 Tab 或功能菜单（存放于 `exts/` 目录，构建时动态合并）。
+
 ### 内网部署
 #### 环境要求
 * nodejs（推荐 22.x LTS；兼容 24.x）

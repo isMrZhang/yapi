@@ -1,6 +1,9 @@
 $color-white: rgba(255,255,255, .85);
 $color-white-secondary: rgba(255,255,255, .67);
 $color-bg-gray: #ececec;
+$color-bg-base: #fff;
+$color-body-bg: #eceef1;
+$color-border-base: #d9d9d9;
 $color-blue: #2395f1;
 $color-blue-deeper: #34495E;
 $color-grey-deep: #929aac;
@@ -9,6 +12,7 @@ $color-bg-dark: #32363a;            // 背景色 - header 用的深蓝色
 $box-shadow-panel: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 
 $color-text-dark: rgba(13, 27, 62, 0.65);
+$color-text-secondary: rgba(13, 27, 62, 0.43);
 
 $color-antd-green: #00a854;
 $color-antd-yellow: #ffbf00;
